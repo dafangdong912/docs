@@ -1,0 +1,68 @@
+---
+title: "How PressureLight SOS Works: From Trigger to Alert"
+sidebarTitle: "How It Works"
+description: "Understand the complete PressureLight SOS pipeline — from fabric pressure detection and LED activation to iPhone GPS capture and emergency SMS delivery."
+---
+
+PressureLight turns a single physical trigger into a coordinated chain of visual alarms, tactile feedback, and a precise GPS-powered emergency message. This page walks you through every stage of that chain so you know exactly what to expect when seconds matter.
+
+## The SOS Flow
+
+<Steps>
+  <Step title="Pressure Matrix Detects Distress">
+    The fabric-embedded pressure sensor matrix continuously monitors for sustained pressure at designated trigger zones on the garment. When the sensors detect a deliberate, sustained press that matches the SOS threshold, they send a signal to the onboard ESP32 microcontroller. The ESP32 immediately begins executing the alert sequence — no buttons, no unlocking, no manual steps required from you.
+  </Step>
+  <Step title="Garment Alerts Begin">
+    The ESP32 activates both the LED strips and the vibration motor simultaneously. The LED strips flash alternating red and white light in a rapid, high-visibility pattern designed to attract attention from bystanders at a distance. At the same time, the vibration motor pulses against your body, giving you clear tactile confirmation that the SOS sequence is running — even if you cannot see or hear the lights around you.
+  </Step>
+  <Step title="Open the SOS Helper Page">
+    You or a nearby bystander opens the PressureLight mobile SOS helper page in **iPhone Safari**. The URL is printed on the garment's care label and encoded in a QR code on the garment tag. The page loads instantly — no app download, no account login. Once the page is open, enter the wearer's name and the emergency contact's phone number if they are not already pre-filled.
+  </Step>
+  <Step title="Capture GPS and Notify">
+    Tap **获取我的当前位置 (Get Location)**. Safari prompts for location permission; grant it to allow the page to read the iPhone's GPS. The page displays the captured latitude, longitude, and accuracy in meters. Then tap either **复制求助信息** to copy the full SOS message to the clipboard, or **打开短信发送** to open a pre-filled SMS deep-link addressed to your emergency contact. Confirm and send the message — your contact receives the full alert with dual map links immediately.
+  </Step>
+</Steps>
+
+## Components at a Glance
+
+<CardGroup cols={2}>
+  <Card title="Pressure Sensor Matrix" icon="microchip">
+    Conductive fabric sensors woven into the garment detect sustained pressure at trigger zones and relay the signal to the ESP32.
+  </Card>
+  <Card title="ESP32 Controller" icon="server">
+    The onboard ESP32 microcontroller orchestrates the entire alert sequence — receiving sensor input and driving both the LED strips and vibration motor.
+  </Card>
+  <Card title="LED Strip" icon="lightbulb">
+    Red and white LED strips mounted on the garment flash in a high-visibility alternating pattern to attract bystander attention in any lighting condition.
+  </Card>
+  <Card title="Vibration Motor" icon="circle-dot">
+    A compact vibration motor embedded in the garment provides tactile confirmation of SOS activation directly to the wearer's body.
+  </Card>
+  <Card title="Mobile SOS Page" icon="mobile-screen-button">
+    A lightweight mobile web page, optimized for iPhone Safari, handles GPS capture, message formatting, and SMS delivery — with zero app installation.
+  </Card>
+  <Card title="Emergency SMS" icon="comment-sms">
+    A fully formatted SOS message — including name, coordinates, accuracy, timestamp, and dual map links — is sent to the pre-configured emergency contact via native iPhone SMS.
+  </Card>
+</CardGroup>
+
+## Example SOS Message
+
+Every message sent through PressureLight follows this exact format, giving your emergency contact everything they need to locate and assist you:
+
+```plaintext
+【PressureLight 紧急求助】
+<Name> 触发了智能压力感知服装 SOS 报警。
+当前位置：纬度 <lat>，经度 <lng>
+定位精度：约 <X> 米
+时间：<timestamp>
+Apple 地图：https://maps.apple.com/?ll=<lat>,<lng>&q=PressureLight%20SOS
+Google 地图：https://maps.google.com/?q=<lat>,<lng>
+请尽快联系或前往协助。
+```
+
+The `<Name>` field is populated from the wearer name you enter on the helper page. The `<lat>`, `<lng>`, `<X>`, and `<timestamp>` values are filled in automatically from the iPhone's GPS reading at the moment you tap 'Get Location'.
+
+<Info>
+  The SOS helper page **cannot silently access your location**. iPhone Safari enforces a mandatory user-permission prompt before any GPS data is read. You must tap 'Get Location' and grant location access for coordinates to appear. This is a deliberate privacy protection — your location is never captured in the background or without your action.
+</Info>

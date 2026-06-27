@@ -1,0 +1,91 @@
+---
+title: "Fix SMS Sending Issues on the PressureLight SOS Page"
+sidebarTitle: "SMS Issues"
+description: "Resolve issues with the SMS deep-link and message sending on iPhone, including the 打开短信发送 button, empty bodies, and copy fallback failures."
+---
+
+The PressureLight SOS page uses the iOS `sms:` URL scheme to open Apple Messages with a pre-filled emergency message. Because this mechanism relies on Safari and the native Messages app, a few things can go wrong. Work through the relevant section below to get your SOS message out quickly.
+
+<Warning>
+  The SOS page can never send a message without your manual confirmation — you must tap **Send** inside the Messages app yourself. This is a deliberate privacy protection; the page has no access to your messages or contacts.
+</Warning>
+
+## SMS Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="打开短信发送 does nothing">
+    **Causes:**
+    - You are not using iPhone Safari (Chrome, Firefox, and other browsers do not support the `sms:` URL scheme reliably).
+    - The Messages app is not set up or is disabled on your device.
+    - A browser security policy is blocking the URL.
+
+    **How to fix:**
+
+    1. Make sure you are opening the SOS page in **iPhone Safari** — not Chrome, Firefox, or any in-app browser.
+    2. Copy the URL from your current browser and paste it into Safari's address bar.
+    3. Tap **打开短信发送** again. Safari will hand off to the Messages app automatically.
+
+    <Note>
+      The `sms:` deep-link is only reliably supported in iPhone Safari. Always use Safari for the PressureLight SOS page.
+    </Note>
+  </Accordion>
+
+  <Accordion title="SMS opens but has no phone number">
+    **Cause:** The **紧急联系人手机号** (emergency contact phone number) field was empty when you tapped the button. The `sms:` URL requires a destination number to pre-fill the **To:** field.
+
+    **How to fix:**
+
+    1. Return to the SOS page.
+    2. Enter your emergency contact's phone number in the **紧急联系人手机号** field.
+    3. Tap **打开短信发送** again.
+
+    If you are already in the Messages compose screen, you can still type or paste the number directly into the **To:** field and send manually.
+  </Accordion>
+
+  <Accordion title="SMS opens but the body is empty or garbled">
+    **Cause:** On some iOS versions, a very long pre-filled message body may not transfer correctly through the `sms:` URL scheme, resulting in an empty or partially filled message body.
+
+    **How to fix:**
+
+    1. Return to the SOS page and tap **复制求助信息** to copy the full SOS message to your clipboard.
+    2. Open the Messages app manually and start a new message to your emergency contact.
+    3. Long-press the message body field and tap **Paste**.
+    4. Tap **Send**.
+  </Accordion>
+
+  <Accordion title="Copy button (复制求助信息) doesn't work">
+    **Cause:** Clipboard write permission was not granted, or you are using an older browser that doesn't support the modern Clipboard API.
+
+    **How it works:** The page first tries `navigator.clipboard.writeText()`. If that fails, it automatically falls back to `document.execCommand('copy')`. If both methods fail, you will need to copy the text manually.
+
+    **How to fix:**
+
+    1. When Safari asks for clipboard permission, tap **Allow**.
+    2. If the button still doesn't work, long-press the message text displayed on the page, tap **Select All**, then tap **Copy**.
+    3. Paste into Messages, WhatsApp, WeChat, or any other app.
+  </Accordion>
+
+  <Accordion title="I sent the SMS but my contact didn't receive it">
+    **Possible causes:**
+    - The phone number format is incorrect (missing country code for international numbers).
+    - You have no SMS signal at your current location.
+    - Your contact's phone is off or out of range.
+
+    **How to fix:**
+
+    1. Verify the number format. For international contacts, include the country code (e.g., `+1` for the US, `+44` for the UK).
+    2. Check your signal bars. If you have no signal, copy the SOS message now and send it as soon as you regain connectivity.
+    3. Use an alternative channel (see below) — your copied message works in any app.
+  </Accordion>
+</AccordionGroup>
+
+## Alternative Ways to Send the SOS Message
+
+If SMS does not work, tap **复制求助信息** to copy the message, then paste and send it through any of the following:
+
+- **WeChat** — open a chat with your emergency contact and paste
+- **WhatsApp** — create a new message and paste
+- **Email** — compose a new email and paste into the body
+- **AirDrop** — paste into Notes and AirDrop the note to a nearby device
+
+The copied message contains your GPS coordinates and map links, so it is fully useful in any medium.

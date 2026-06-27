@@ -1,47 +1,76 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: "Get Started with PressureLight in 5 Minutes"
+sidebarTitle: "Quick Start"
+description: "Set up your PressureLight garment, configure your emergency contact and wearer name, and complete a full test drill — all in under five minutes."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
+You can have PressureLight fully configured and ready to send a real SOS alert in under five minutes. Follow the steps below to wear the garment correctly, set up your emergency contact, verify GPS access, and confirm your SOS message sends as expected.
 
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
+<Note>
+  Before you begin, make sure you have: a **fully charged PressureLight garment** (check the battery indicator LED on the controller pocket), an **iPhone with Safari** available, and your **emergency contact's phone number** ready to enter.
+</Note>
 
-## Prerequisites
-
-Before you begin, you must have:
-
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+## Setup Steps
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
+  <Step title="Wear the Garment">
+    Put on the PressureLight garment and adjust it so it fits snugly against your body. Good sensor contact is essential for reliable SOS detection — follow these fit tips:
 
-    ```bash
-    npm install your-package
-    ```
+    - **Avoid loose draping.** The pressure sensor zones (marked with subtle 压感 labels on the inner fabric) must rest flush against your skin or a thin base layer.
+    - **Secure all fastenings.** Zip, buckle, or snap the garment closed before use so the sensor matrix stays in position during movement.
+    - **Check the controller pocket.** Confirm the ESP32 controller module is seated firmly in its pocket and the LED strip connectors are plugged in securely.
+    - **Do not fold or bunch the sensor panels.** This can cause false readings or missed triggers.
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
+  <Step title="Open the SOS Helper Page">
+    Open the PressureLight SOS helper page in **iPhone Safari**. You can reach it two ways:
 
-    ```bash
-    your-cli init
-    ```
+    - **Scan the QR code** printed on the garment's inside tag using the iPhone Camera app, then tap the Safari link that appears.
+    - **Type the URL directly** into Safari's address bar — the URL is also printed on the care label inside the collar.
+
+    The page loads without any login or download. If Safari asks whether to allow the site to use your location, tap **Allow While Using App** to pre-authorize GPS access.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
+  <Step title="Enter Your Emergency Contact's Number">
+    Locate the input field labeled **紧急联系人手机号** (Emergency Contact Phone Number) on the helper page. Type your emergency contact's full mobile number, including the country code if they are outside China (for example, `+1` for the United States or `+86` for mainland China). This number pre-fills the SMS deep-link whenever you trigger an alert.
+  </Step>
+  <Step title="Enter the Wearer's Name">
+    Locate the input field labeled **穿戴者姓名** (Wearer Name). Enter the name that should appear in the SOS message so your emergency contact immediately knows who sent the alert. If you leave this field empty, it defaults to **PressureLight 用户**. Use a name your contact will recognize instantly.
+  </Step>
+  <Step title="Allow Location Access">
+    If Safari has not yet prompted you for location permission, tap **获取我的当前位置 (Get Location)** once. Safari displays a permission dialog asking whether to share your location with the page. Tap **Allow** to grant access. You only need to do this once per browser session — Safari remembers your choice while the page remains open.
+  </Step>
+  <Step title="Tap 'Get Location' (获取我的当前位置)">
+    Tap the **获取我的当前位置** button. The page contacts the iPhone's GPS hardware and, within a few seconds, displays:
 
-    ```bash
-    your-cli start
-    ```
+    - Your **latitude** and **longitude** coordinates
+    - The **accuracy** of the reading in meters (lower is better — move to an open area outdoors for best results)
+
+    Wait until the accuracy reading is below **20 meters** before proceeding for a production SOS. During a test drill, any reading is fine.
+  </Step>
+  <Step title="Copy or Send the SOS Message">
+    With GPS coordinates displayed, you have two options:
+
+    - **Tap 复制求助信息** — copies the full formatted SOS message (including both map links) to your iPhone clipboard. You can then paste it into any messaging app manually.
+    - **Tap 打开短信发送** — opens the iPhone Messages app with the SOS message pre-filled and your emergency contact's number already in the 'To' field. Review the message and tap **Send**.
+
+    Your emergency contact receives the complete alert with your name, coordinates, accuracy, timestamp, and both Apple Maps and Google Maps links.
   </Step>
 </Steps>
 
 <Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
-
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
+  **Run a test drill before you need it for real.** Put the garment on, complete steps 1–7 above, and send an actual test SMS to your emergency contact (let them know in advance). Confirm they receive the message, can open both map links, and that the coordinates match your known location. Doing this drill once builds muscle memory and ensures there are no surprises under stress.
 </Tip>
+
+<Warning>
+  **iPhone SMS always requires your manual confirmation.** When you tap 打开短信发送, the Messages app opens with the message pre-filled — but iOS requires you to tap **Send** yourself before the message is transmitted. This is an iOS privacy feature that PressureLight cannot bypass. Make sure you or a bystander completes that final tap after the SOS helper page opens the Messages app.
+</Warning>
+
+## What's Next
+
+<CardGroup cols={2}>
+  <Card title="Manage Emergency Contacts" icon="address-book" href="/setup/emergency-contacts">
+    Learn how to save, update, and switch between multiple emergency contacts on the SOS helper page.
+  </Card>
+  <Card title="Triggering an SOS Alert" icon="triangle-exclamation" href="/sos/triggering-sos">
+    Understand exactly how to activate the pressure trigger deliberately, what the garment feedback looks, and how to cancel a false alarm.
+  </Card>
+</CardGroup>

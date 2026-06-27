@@ -1,0 +1,59 @@
+---
+title: "PressureLight Garment Overview and Components"
+sidebarTitle: "Garment Overview"
+description: "Explore the physical components inside the PressureLight 压感光护 garment and understand exactly what each one does to keep you safe."
+---
+
+The PressureLight 压感光护 is a smart safety garment engineered to detect when you're in distress and respond instantly — flashing high-visibility alerts, triggering tactile alarms, and enabling an SOS call from your iPhone, all without requiring a single app install. Understanding the hardware inside the garment helps you wear it correctly, maintain it, and trust it when it matters most.
+
+## Components Overview
+
+<CardGroup cols={2}>
+  <Card title="Pressure Sensor Matrix" icon="grid-2">
+    A grid of pressure-sensitive sensors woven directly into the garment fabric. The matrix continuously monitors pressure patterns across the sensor zones and feeds that data to the ESP32. When it detects sustained distress-level pressure — distinct from normal movement — it signals the ESP32 to activate the SOS sequence.
+  </Card>
+  <Card title="ESP32 Controller" icon="microchip">
+    The brain of the PressureLight system. The ESP32 microcontroller reads input from the pressure matrix, applies threshold logic to distinguish distress from everyday activity, and takes action — controlling the LED light strip, firing the vibration motor, and managing overall SOS state. Everything runs on-device with no cloud dependency.
+  </Card>
+  <Card title="LED Light Strip" icon="lightbulb">
+    High-visibility LED strips run along the exterior of the garment. On SOS activation, the ESP32 drives the strips into a rapid alternating red-and-white flash pattern (红白闪烁) that is designed to be seen by bystanders and emergency services from a distance, day or night.
+  </Card>
+  <Card title="Vibration Motor" icon="wave-pulse">
+    An embedded vibration motor activates simultaneously with the LED strip during SOS. It delivers a strong tactile alert directly to you — the wearer — while also producing enough physical sensation and sound to attract the attention of anyone nearby.
+  </Card>
+</CardGroup>
+
+## Before You Go Out
+
+Run through this checklist every time before you head out wearing your PressureLight:
+
+- Garment is fully charged
+- LED strips are unobstructed by outerwear or accessories
+- Pressure sensors are in contact with your body — the garment fits correctly and snugly
+- The SOS helper page is bookmarked in Safari on your iPhone
+- Your emergency contact number is known and accessible
+
+## Charging the Garment
+
+Charge your PressureLight using the included cable before each use. Connect the cable to the charging port on the garment and plug the other end into a power source. The onboard LED indicator shows charge status:
+
+- **Solid red** — charging in progress
+- **Solid green** — fully charged
+- **Flashing red** — battery critically low; charge immediately
+
+Allow the garment to reach a full charge before wearing it for extended outdoor activity. Do not use the garment while it is charging.
+
+<Note>
+  **Care and Maintenance** — Avoid fully submerging the garment in water; it is not rated for immersion. Follow the washing instructions on the garment label carefully. Do not fold, crease, or sharply bend the LED strip sections — doing so can damage the strip and impair the visual alert.
+</Note>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Pressure Sensors" icon="hand-pointer" href="/hardware/pressure-sensors">
+    Learn how the fabric sensor matrix detects distress pressure and how to wear the garment for reliable triggering.
+  </Card>
+  <Card title="LED Alerts" icon="lightbulb" href="/hardware/led-alerts">
+    Understand how the LED strip and vibration motor work together to signal an SOS.
+  </Card>
+</CardGroup>

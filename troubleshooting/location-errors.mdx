@@ -1,0 +1,74 @@
+---
+title: "Fix GPS Location Errors on the PressureLight SOS Page"
+sidebarTitle: "Location Errors"
+description: "Resolve GPS location errors on the PressureLight SOS helper page, including permission denied, position unavailable, and timeout issues."
+---
+
+When you tap **Get Location** on the PressureLight SOS page, your iPhone uses GPS to capture your coordinates and build an emergency map link. If location fails, the SOS message cannot include your position — so resolving these errors quickly matters.
+
+<Note>
+  The SOS page requires location permission. It cannot generate a map link without GPS coordinates.
+</Note>
+
+## Common GPS Errors
+
+<AccordionGroup>
+  <Accordion title="Location permission denied (Error 1)">
+    **Cause:** You previously tapped **Don't Allow** when Safari asked for location access, or Location Services for Safari is blocked in your iPhone Settings.
+
+    **How to fix:**
+
+    1. Open the **Settings** app on your iPhone.
+    2. Go to **Privacy & Security** → **Location Services**.
+    3. Scroll down and tap **Safari Websites**.
+    4. Select **While Using the App**.
+    5. Return to the SOS page in Safari and tap **Get Location** again.
+
+    <Tip>
+      If you don't see Safari Websites in the list, make sure Location Services is toggled **on** at the top of the Location Services screen.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Position unavailable (Error 2)">
+    **Cause:** Your device cannot determine your location. This typically happens indoors, in areas with poor GPS signal, or when Airplane Mode is enabled.
+
+    **How to fix:**
+
+    1. Move near a window or, ideally, step outside.
+    2. If Airplane Mode is on, disable it: swipe into **Control Center** and tap the airplane icon to turn it off.
+    3. Wait **5–10 seconds** for your iPhone to acquire a satellite signal.
+    4. Return to the SOS page and tap **Get Location** again.
+  </Accordion>
+
+  <Accordion title="Location timeout (Error 3)">
+    **Cause:** GPS took longer than 15 seconds to get a fix. This often happens when you are inside a building, in a basement, or surrounded by tall structures that block satellite signals.
+
+    **How to fix:**
+
+    1. Move to a more open area — outdoors is best.
+    2. Confirm that **Location Services** is enabled in **Settings → Privacy & Security → Location Services**.
+    3. Tap **Get Location** again to retry.
+
+    <Tip>
+      If you are already outside and still timing out, try locking and unlocking your iPhone to refresh the GPS radio, then retry.
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+## Accuracy Is Very High (\>100 Meters)
+
+This is not an error — the SOS page will still generate a map link — but a high accuracy value means your reported location is imprecise, which could make it harder for your emergency contact to find you.
+
+**What to do:**
+
+- Move outdoors and away from tall buildings or dense tree cover.
+- Tap **Get Location** again to take a new reading. GPS accuracy improves as your iPhone establishes a stronger satellite lock.
+- Check the accuracy figure included in the generated SOS message. If it still exceeds 100 meters, note this for your emergency contact so they know to search a wider area.
+
+<Note>
+  The SOS page includes the accuracy value in the message body so your emergency contact always knows how precise the location is.
+</Note>
+
+<Tip>
+  Test location capture before an emergency so you know it works on your device. Open the SOS page in iPhone Safari when you're outdoors and tap **Get Location** — confirm coordinates appear and the map link opens correctly.
+</Tip>

@@ -1,0 +1,76 @@
+{
+  "projectType": "saas",
+  "projectName": "PressureLight",
+  "projectDescription": "PressureLight (压感光护) is a smart pressure-sensing illuminated safety garment with an integrated SOS system that triggers visual/vibration alerts and sends GPS location to emergency contacts via a mobile web page.",
+  "theme": "almond",
+  "primaryColor": "#ef7025",
+  "lightColor": "#eec9bc",
+  "darkColor": "#4fa1ab",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "User Guide",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "how-it-works",
+              "quickstart"
+            ]
+          },
+          {
+            "group": "Setup",
+            "pages": [
+              "setup/emergency-contacts",
+              "setup/mobile-page",
+              "setup/location-permissions"
+            ]
+          },
+          {
+            "group": "Using SOS",
+            "pages": [
+              "sos/triggering-sos",
+              "sos/sending-location",
+              "sos/map-links"
+            ]
+          },
+          {
+            "group": "Hardware",
+            "pages": [
+              "hardware/garment-overview",
+              "hardware/pressure-sensors",
+              "hardware/led-alerts"
+            ]
+          },
+          {
+            "group": "Troubleshooting",
+            "pages": [
+              "troubleshooting/location-errors",
+              "troubleshooting/sms-issues",
+              "troubleshooting/faq"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Pressure-sensitive fabric matrix triggers SOS automatically",
+    "ESP32-powered LED strip flashes red and white as a visual alarm",
+    "Vibration motor provides tactile alert on SOS activation",
+    "Mobile web helper page captures iPhone GPS with high accuracy",
+    "One-tap copy or SMS deep-link to send location to emergency contacts",
+    "Apple Maps and Google Maps links included in every SOS message",
+    "No app install required — works in iPhone Safari",
+    "Privacy-safe: location only captured on user action, SMS sent manually"
+  ],
+  "publicApiSurface": [
+    "navigator.geolocation.getCurrentPosition (high-accuracy GPS capture)",
+    "SMS deep-link: sms:<phone>&body=<encoded-message>",
+    "Apple Maps URL: https://maps.apple.com/?ll=<lat>,<lng>&q=PressureLight%20SOS",
+    "Google Maps URL: https://maps.google.com/?q=<lat>,<lng>",
+    "navigator.clipboard.writeText (SOS message copy)",
+    "SOS message format: name, coordinates, accuracy, timestamp, map links"
+  ]
+}

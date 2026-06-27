@@ -1,20 +1,57 @@
 ---
-title: "Introduction"
-description: "Welcome to your project"
+title: "PressureLight: Smart Safety Garment with SOS"
+sidebarTitle: "Home"
+description: "Welcome to PressureLight — your guide to the intelligent pressure-sensing illuminated safety garment with built-in SOS and GPS location sharing."
 ---
 
-Write a short description of your product here. What it does, who it's for, and what they can accomplish with it.
+PressureLight (压感光护) is a smart safety wearable that automatically detects distress through pressure-sensitive fabric and alerts the people who matter most. When an SOS event triggers, the garment flashes red and white LEDs, activates a vibration motor, and guides you through sending your precise GPS location to emergency contacts — all from your phone browser, no app required.
 
-<Tip>
-  Ready to make this your own? Start by editing this page. Update your `docs.json` file to customize your site. Then fill out the [Quickstart](/quickstart) page.
-</Tip>
+<CardGroup cols={2}>
+  <Card title="Introduction" icon="shirt" href="/introduction">
+    Learn what PressureLight is and how it keeps you safe
+  </Card>
+  <Card title="Quick Start" icon="rocket" href="/quickstart">
+    Set up your garment and run your first SOS drill in minutes
+  </Card>
+  <Card title="How It Works" icon="circle-info" href="/how-it-works">
+    Understand the full SOS flow from pressure trigger to GPS alert
+  </Card>
+  <Card title="Emergency Contacts" icon="address-book" href="/setup/emergency-contacts">
+    Configure who gets notified when SOS activates
+  </Card>
+</CardGroup>
 
-<Card title="Quickstart" icon="rocket" href="/quickstart">
-  This card links to the quickstart page in your project.
-</Card>
-<Card title="Components" icon="puzzle-piece" href="https://mintlify.com/docs/components">
-  Add cards, callouts, steps, tabs, and more to design and structure your pages.
-</Card>
-<Card title="Settings" icon="gear" href="https://mintlify.com/docs/organize/settings">
-  Set your site name, branding, and navigation in the `docs.json` file.
-</Card>
+## Get Started in 4 Steps
+
+<Steps>
+  <Step title="Charge and wear your garment">
+    Ensure your PressureLight garment is fully charged and fitted correctly so the pressure sensors make proper contact with your body.
+  </Step>
+  <Step title="Add an emergency contact">
+    Open the SOS helper page and enter your emergency contact's phone number so it's ready when you need it.
+  </Step>
+  <Step title="Allow location access">
+    When prompted, grant location permission in iPhone Safari so the SOS page can capture your GPS coordinates instantly.
+  </Step>
+  <Step title="Run a test drill">
+    Trigger a test SOS to verify lights, vibration, and location sharing all work as expected before heading out.
+  </Step>
+</Steps>
+
+<Note>
+  PressureLight's SOS helper page works best in **iPhone Safari**. Always open the page in Safari to ensure GPS and SMS deep-links function correctly.
+</Note>
+
+## Explore the Docs
+
+<CardGroup cols={3}>
+  <Card title="Setup" icon="gear" href="/setup/mobile-page">
+    Configure the mobile page and permissions
+  </Card>
+  <Card title="Using SOS" icon="siren-on" href="/sos/triggering-sos">
+    Understand how to trigger and send an SOS
+  </Card>
+  <Card title="Hardware" icon="microchip" href="/hardware/garment-overview">
+    Learn about sensors, LEDs, and the ESP32
+  </Card>
+</CardGroup>

@@ -1,0 +1,70 @@
+---
+title: "Allow Location Access for PressureLight SOS"
+sidebarTitle: "Location Permissions"
+description: "Grant iPhone Safari permission to share your GPS coordinates with the PressureLight SOS page so your exact location reaches help fast."
+---
+
+The SOS helper page needs your GPS position to generate a useful distress message. Without coordinates, your contact receives no location data and cannot direct help to you. Granting location access to Safari takes under ten seconds — do it now, before you ever need it.
+
+## Grant Permission on First Visit
+
+<Steps>
+  <Step title="Open the SOS page in iPhone Safari">
+    Navigate to the helper page URL using the QR code or by typing the address. Confirm the blinking red status indicator is visible.
+  </Step>
+  <Step title="Tap '获取我的当前位置'">
+    Tap the **Get Location** button. This is the only action that triggers a location request — the page never requests your position automatically.
+  </Step>
+  <Step title="Respond to the permission dialog">
+    Safari displays a prompt asking whether to share your location. Tap **Allow Once** to grant access for this session, or **Allow While Using** to grant access whenever the page is open.
+  </Step>
+  <Step title="Wait for the coordinates to appear">
+    Within a few seconds, the coordinates display fills with your latitude, longitude, accuracy in meters, and a timestamp. Your SOS message is now ready to send.
+  </Step>
+</Steps>
+
+<Tip>
+  Choose **Allow While Using** rather than **Allow Once**. With this setting Safari does not prompt you again each time you tap the Get Location button, which matters when you need to act quickly under stress.
+</Tip>
+
+## Re-Enable Location If Previously Denied
+
+If you tapped **Don't Allow** at the Safari prompt, iOS blocks all future location requests from that page until you override the setting manually. Use one of these paths to restore access:
+
+**Path A — Location Services settings:**
+1. Open the iPhone **Settings** app.
+2. Go to **Privacy & Security → Location Services**.
+3. Scroll down and tap **Safari Websites**.
+4. Set the permission to **While Using the App**.
+
+**Path B — Safari settings:**
+1. Open the iPhone **Settings** app.
+2. Scroll down and tap **Safari**.
+3. Tap **Location**.
+4. Set it to **Ask** or **Allow**.
+
+After changing either setting, return to the SOS page and tap **获取我的当前位置** again.
+
+<Warning>
+  If location access is denied, the SOS helper page displays an error and cannot generate an SOS message. The coordinates, Apple Maps link, and Google Maps link are all derived from your GPS position — none of them appear without it. Resolve the permission issue before an emergency arises.
+</Warning>
+
+## Understanding Accuracy
+
+<Info>
+  The SOS page requests your position with `enableHighAccuracy: true`. On a clear outdoor signal, iOS GPS typically achieves an accuracy of **10–30 meters**. The accuracy value is included in your SOS message so your contact knows how precise the fix is.
+</Info>
+
+Use these tips to get the best possible reading:
+
+- **Go outdoors or stand near a window.** GPS signals are blocked by thick walls, basements, and dense building materials. Open sky gives the fastest and most accurate fix.
+- **Wait and retry if accuracy is high.** If the coordinates display shows an accuracy greater than 100 meters, wait 5–10 seconds for the GPS receiver to refine its estimate, then tap **获取我的当前位置** again. The page always uses the most recently captured position.
+- **Keep the screen on.** iOS may throttle location hardware when the display sleeps. Tap the screen to keep it active while the fix is refining.
+
+## Next Steps
+
+<CardGroup cols={1}>
+  <Card title="Send Your Location" icon="location-arrow" href="/sos/sending-location">
+    Generate your SOS message and dispatch it to your emergency contact.
+  </Card>
+</CardGroup>

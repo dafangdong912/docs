@@ -1,0 +1,63 @@
+---
+title: "How to Trigger the PressureLight SOS Alarm"
+sidebarTitle: "Triggering SOS"
+description: "Learn how sustained pressure on PressureLight's fabric matrix activates the ESP32-driven SOS alarm — flashing LEDs and vibration alert."
+---
+
+When you need help, PressureLight is designed to respond immediately. A sustained press on the garment's built-in pressure matrix is all it takes to activate the full SOS alarm sequence — visible, audible, and tactile — without reaching for your phone.
+
+## How the Trigger Works
+
+PressureLight embeds a pressure-sensing matrix directly into the fabric. When you apply sustained pressure to the matrix, the signal travels to the onboard ESP32 microcontroller, which evaluates the input against a calibrated threshold. That threshold is specifically tuned to distinguish ordinary movement and incidental contact from a deliberate distress press, so everyday activity does not cause false activations.
+
+Once the ESP32 registers a qualifying pressure event, the SOS sequence begins instantly:
+
+- **LED strips begin flashing red and white** — a high-visibility distress pattern visible in low light and at distance.
+- **The vibration motor activates** — providing a tactile alarm you and those nearby can feel.
+- **The garment enters SOS mode** — all alarm outputs remain active until you power off the garment or complete the mobile helper flow.
+
+## What to Do After SOS Activates
+
+<Steps>
+  <Step title="Stay calm">
+    The garment's flashing LED strips and vibration motor are already working to attract attention. You do not need to do anything extra to signal your distress — focus on staying still and safe.
+  </Step>
+  <Step title="Open the SOS helper page in iPhone Safari">
+    Navigate to the PressureLight SOS helper URL in Safari on your iPhone. No app download is required — the page runs entirely in the browser.
+  </Step>
+  <Step title="Tap 'Get Location' to capture your GPS">
+    Tap the **获取我的当前位置** button on the SOS helper page. Allow location access if prompted. The page will display your latitude, longitude, accuracy, and timestamp.
+  </Step>
+  <Step title="Send your location to your emergency contact">
+    Enter your emergency contact's phone number and your name, then tap **打开短信发送** to open a pre-filled SMS in iPhone Messages — or tap **复制求助信息** to copy the message and send it through any app. Tap **Send** to dispatch the message.
+  </Step>
+</Steps>
+
+<Tip>
+  Run a test drill before heading out. Power on your garment, trigger the pressure matrix deliberately, and walk through the full SOS helper page flow so you know exactly what to expect in a real emergency.
+</Tip>
+
+<Warning>
+  Do not cover or obscure the LED strips. The flashing red-and-white pattern is your primary visible distress signal — keeping the strips unobstructed maximises how far the alarm can be seen.
+</Warning>
+
+## Cancelling a False Alarm
+
+If the SOS alarm activates unintentionally, take these steps:
+
+1. **Stop the lights and vibration** — power off the garment using its main power switch. This immediately halts the LED flashing and vibration motor.
+2. **Dismiss the GPS step** — if you have already opened the SOS helper page, simply close the Safari tab. The page cannot send any message without your explicit action; no location or SMS is transmitted automatically.
+3. **Notify your contact if needed** — if you accidentally sent a message before realising it was a false alarm, contact your emergency contact directly to let them know everything is fine.
+
+There is no remote cancel function; powering off the garment is the definitive way to stop the alarm hardware.
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Send Your GPS Location" icon="location-dot" href="/sos/sending-location">
+    Use the SOS helper page to capture your coordinates and send a pre-formatted emergency message to your contact.
+  </Card>
+  <Card title="Pressure Sensors" icon="microchip" href="/hardware/pressure-sensors">
+    Learn how the fabric pressure matrix works and how the detection threshold is calibrated.
+  </Card>
+</CardGroup>

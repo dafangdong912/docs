@@ -1,0 +1,70 @@
+---
+title: "Setting Up the PressureLight SOS Mobile Page"
+sidebarTitle: "Mobile Page"
+description: "Open the PressureLight SOS helper page in iPhone Safari and learn every control on the page so you're fully prepared before an emergency happens."
+---
+
+The PressureLight SOS helper page is your command center when the garment triggers an alert. It runs entirely in iPhone Safari — no app download, no account, no setup fees. Spend two minutes familiarizing yourself with it now so operating it under stress is second nature.
+
+<Warning>
+  Always open the SOS page in **iPhone Safari**. Other browsers such as Chrome or Firefox may not support the `sms:` deep-link format and can provide lower GPS accuracy. The page is designed and tested exclusively for Mobile Safari on iOS.
+</Warning>
+
+## Open the Page
+
+You have two options:
+
+- **Scan the QR code** printed on the tag inside your PressureLight garment. Your iPhone camera opens the link directly in Safari.
+- **Type the URL** printed on the same tag directly into the Safari address bar.
+
+Both methods take you to the same helper page. Verify you see the blinking red status indicator before continuing.
+
+## Add the Page to Your Home Screen
+
+Saving the SOS page as a Home Screen shortcut lets you open it instantly — the same way you would launch any app.
+
+<Steps>
+  <Step title="Open the page in Safari">
+    Navigate to the SOS helper page URL using the QR code or by typing the address into Safari.
+  </Step>
+  <Step title="Tap the Share button">
+    Tap the **Share** button at the bottom of the Safari toolbar — it looks like a box with an arrow pointing upward.
+  </Step>
+  <Step title="Select 'Add to Home Screen'">
+    Scroll down the share sheet and tap **Add to Home Screen**.
+  </Step>
+  <Step title="Name and confirm">
+    Enter the name **PressureLight SOS** so you can find it instantly, then tap **Add**. The icon appears on your Home Screen.
+  </Step>
+</Steps>
+
+## Page Anatomy
+
+Each section of the helper page has a specific role. Learn them before you need them.
+
+| Element | What It Does |
+|---|---|
+| **Status indicator** (blinking red dot) | Shows the page is active and ready. A steady or absent dot may indicate a script error — reload the page. |
+| **Get Location button** (获取我的当前位置) | Requests your current GPS position from iOS. Tap this first after opening the page. |
+| **Emergency contact number field** (紧急联系人手机号) | Accepts the mobile number of your emergency contact. This pre-fills the SMS deep-link recipient. |
+| **Wearer name field** | Your name as it will appear in the SOS message so your contact knows exactly who sent the alert. |
+| **Coordinates display** | Shows your latitude, longitude, accuracy in meters, and the timestamp of the last GPS fix. |
+| **SOS message textarea** | The full pre-formatted message that will be sent — includes your name, coordinates, accuracy, timestamp, and links to Apple Maps and Google Maps. |
+| **Copy button** (复制求助信息) | Copies the complete SOS message to your clipboard so you can paste it into any app. |
+| **SMS button** (打开短信发送) | Opens the iPhone Messages app with the contact number and SOS message pre-filled. You still tap Send to dispatch it. |
+| **Open Map button** | Opens your coordinates in Apple Maps so you or a responder can confirm the location visually. |
+
+<Note>
+  The page does not store your data anywhere. Your name, contact number, and GPS coordinates exist only in the current browser session. Closing the tab clears everything.
+</Note>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Allow Location Access" icon="location-dot" href="/setup/location-permissions">
+    Grant GPS permission to the SOS page so coordinates are captured accurately.
+  </Card>
+  <Card title="Send Your Location" icon="paper-plane" href="/sos/sending-location">
+    Walk through the full SOS message generation and dispatch flow.
+  </Card>
+</CardGroup>

@@ -1,0 +1,49 @@
+---
+title: "Add and Manage Your Emergency Contacts"
+sidebarTitle: "Emergency Contacts"
+description: "Configure who gets notified the moment your PressureLight SOS activates — so the right person receives your location and reaches you fast."
+---
+
+When you trigger an SOS, every second counts. Entering the right emergency contact on the PressureLight SOS helper page ensures your distress message — complete with your name, GPS coordinates, and map links — is pre-addressed and ready to send with a single tap.
+
+## Where to Enter the Contact Number
+
+Open the SOS helper page in iPhone Safari and locate the field labeled **紧急联系人手机号** (Emergency Contact Phone Number). Type the recipient's mobile number directly into this field before you need it. The page uses this number to build the SMS deep-link, so the message opens in your iPhone's Messages app already addressed to that contact.
+
+<Note>
+  The SOS helper page does not save data between sessions. Your contact number is held only in the current browser session and is cleared when you close the tab. Re-enter it each time you open the page, or bookmark the URL with the number pre-filled in the query string so it loads automatically.
+</Note>
+
+## Phone Number Format
+
+Use the full international format when your contact is outside mainland China:
+
+| Location | Format | Example |
+|---|---|---|
+| Mainland China | 11-digit number | `17568085667` |
+| United States / Canada | Country code + number | `+11234567890` |
+| United Kingdom | Country code + number | `+447911123456` |
+| Other international | `+` + country code + number | `+[code][number]` |
+
+Entering `17568085667` in the field automatically fills the SMS link so that tapping **打开短信发送** opens Messages pre-addressed to that number — no copying or typing required.
+
+<Tip>
+  Run a test drill before you rely on this setup in a real emergency. Trigger the location capture, generate an SOS message, and send a test SMS to your contact so both of you know exactly what to expect.
+</Tip>
+
+## Best Practices
+
+- **Choose someone who responds quickly.** Your contact should be reachable by phone at any time — a family member, close friend, or team supervisor who checks messages promptly.
+- **Tell them about PressureLight.** Make sure your contact knows they may receive an SOS message from you. Explain what it looks like and that it will include Apple Maps and Google Maps links to your location.
+- **Cover more than one contact.** The helper page supports one pre-filled recipient per session. To alert a second person, tap **复制求助信息** to copy the message text, then paste it into any messaging app and send it manually.
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Set Up the Mobile Page" icon="mobile" href="/setup/mobile-page">
+    Open and configure the SOS helper page in iPhone Safari.
+  </Card>
+  <Card title="Send Your Location" icon="location-dot" href="/sos/sending-location">
+    Capture GPS coordinates and dispatch your SOS message.
+  </Card>
+</CardGroup>

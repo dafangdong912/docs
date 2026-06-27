@@ -1,0 +1,73 @@
+---
+title: "LED Alert Strip and Vibration Motor on PressureLight"
+sidebarTitle: "LED Alerts"
+description: "Discover how PressureLight's red/white flashing LED strips and vibration motor activate together during an SOS to signal distress visibly and tactilely."
+---
+
+When the ESP32 determines that a distress event is underway, it doesn't wait — it simultaneously fires two attention-commanding outputs: the LED light strip bursts into a high-visibility red-and-white flash pattern, and the vibration motor activates to make sure both you and anyone nearby knows something is wrong. Together, these two systems form the physical distress signal layer of PressureLight 压感光护.
+
+## LED Light Strip
+
+The LED strips run along the exterior of the garment and are driven entirely by the ESP32. There is no manual switch — activation is automatic the moment the ESP32 confirms an SOS-level pressure event.
+
+- **Controlled by the ESP32** — the microcontroller drives the flash pattern directly, with no user action required.
+- **Flash pattern** — the strips alternate between red and white at high frequency (红白闪烁), producing a striking, unmistakable visual signal.
+- **Purpose** — the pattern is deliberately chosen to maximise visibility to bystanders and emergency services at a distance, in low light, and in high-movement environments.
+- **Keep the strip unobstructed** — do not wear heavy outerwear or carry equipment that covers the LED strip zones during use. An obstructed strip cannot be seen by people who could help you.
+
+## Vibration Motor
+
+The vibration motor activates at the same moment as the LED strip, giving SOS alerts a physical dimension beyond light alone.
+
+- **Simultaneous activation** — the ESP32 triggers both the LED strip and the vibration motor together, so there is no delay between the two signals.
+- **Tactile alert for the wearer** — even if you cannot see the LED strip (for example, if you have fallen face-down), the vibration confirms that the SOS sequence is active.
+- **Attracts nearby attention** — the vibration produces both physical sensation and an audible buzzing that bystanders in close proximity can notice, increasing the chance of immediate help.
+
+## SOS vs. Normal Operation
+
+<Tabs>
+  <Tab title="SOS Active">
+    When an SOS event is detected by the pressure matrix and confirmed by the ESP32:
+
+    - The **LED strips flash rapidly**, alternating red and white (红白闪烁) in a continuous high-frequency cycle.
+    - The **vibration motor runs continuously**, producing strong tactile pulses and audible buzzing.
+    - Both outputs remain active until the SOS is cancelled or the battery is depleted.
+    - The iPhone SOS helper page (opened in Safari) simultaneously displays an alert, requiring no app install.
+
+    This combined state is designed to be unmissable — visually, physically, and audibly.
+  </Tab>
+  <Tab title="Normal Operation">
+    During normal wear with no distress event active:
+
+    - The **LED strips are off** — no light is emitted. The strips do not produce any ambient glow during standby.
+    - The **vibration motor is off** — you will not feel any vibration from normal wear or movement.
+    - The ESP32 continues to monitor the pressure matrix in the background, drawing minimal power.
+    - Normal movement, walking, sitting, and activity produce no LED or vibration response.
+
+    If you notice unexpected flashing or vibration during normal wear, review your garment fit — see [Pressure Sensors](/hardware/pressure-sensors) for guidance.
+  </Tab>
+</Tabs>
+
+<Note>
+  **Battery impact** — the LED strips and vibration motor are the highest power-draw components in the garment. In SOS mode, the battery depletes significantly faster than during normal standby wear. Always charge the garment fully before use so you have maximum battery available if an SOS event occurs.
+</Note>
+
+## Troubleshooting
+
+| Symptom | Possible Cause | Fix |
+|---|---|---|
+| LEDs don't flash on SOS | Low battery | Charge the garment fully before use |
+| LEDs flash but appear dim | Battery low | Charge the garment; dim output indicates insufficient power |
+| Vibration activates but no LEDs | LED strip connection issue | Contact support — do not attempt to repair internally |
+| No response at all (no LEDs, no vibration) | Garment is powered off or fully discharged | Power the garment on; charge if the battery is depleted |
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Triggering SOS" icon="siren" href="/sos/triggering-sos">
+    Walk through the complete SOS activation sequence and learn how to test it safely before you need it for real.
+  </Card>
+  <Card title="Troubleshooting FAQ" icon="circle-question" href="/troubleshooting/faq">
+    Find answers to common questions about garment behaviour, false alarms, charging, and more.
+  </Card>
+</CardGroup>

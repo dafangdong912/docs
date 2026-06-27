@@ -1,0 +1,97 @@
+---
+title: "PressureLight Frequently Asked Questions"
+sidebarTitle: "FAQ"
+description: "Common questions about PressureLight garment use, the SOS helper page, GPS accuracy, SMS sending, and privacy — answered clearly and concisely."
+---
+
+Got questions about your PressureLight smart safety garment or its SOS helper page? Find straight answers below, from first-time setup to emergency workflows. If your question isn't covered here, check the dedicated [Location Errors](/troubleshooting/location-errors) and [SMS Issues](/troubleshooting/sms-issues) guides.
+
+<AccordionGroup>
+  <Accordion title="Do I need to install an app?">
+    No. The PressureLight SOS helper page runs entirely inside **iPhone Safari** — no download, no installation, no account. Open the page URL in Safari and it is ready to use immediately.
+  </Accordion>
+
+  <Accordion title="Does the SOS page store my location or personal data?">
+    No. The page has no backend, no database, and no login. All data — your name, emergency contact number, and GPS coordinates — exists **only in your current browser session**. When you close the tab, everything is gone. Nothing is transmitted to any server.
+  </Accordion>
+
+  <Accordion title="Can I use a browser other than Safari?">
+    iPhone Safari is the **recommended and supported browser**. Other browsers (Chrome, Firefox, in-app browsers inside WeChat or Instagram) may not fully support:
+
+    - The `sms:` deep-link that pre-fills and opens the Messages app
+    - GPS location at full accuracy
+
+    Always open the SOS page directly in **iPhone Safari** for reliable operation.
+  </Accordion>
+
+  <Accordion title="What if I don't have a mobile signal?">
+    GPS works entirely independently of your cellular signal — your iPhone can acquire your coordinates even with no bars. If you have no signal:
+
+    1. Tap **Get Location** to capture your GPS coordinates.
+    2. Tap **复制求助信息** to copy the full SOS message to your clipboard.
+    3. Send it through any messaging app (SMS, WhatsApp, WeChat, email) as soon as your signal is restored.
+
+    Your copied message remains in the clipboard until you copy something else or restart your phone.
+  </Accordion>
+
+  <Accordion title="Can I pre-set my emergency contact number?">
+    The SOS page does not currently save your contact number between sessions, so you need to enter it each time you load the page.
+
+    **Workaround:** After filling in your name and contact number, bookmark the page in Safari. Some iOS versions preserve form field values in bookmarks, so reopening the bookmark may restore your entries. Test this on your device before relying on it in an emergency.
+  </Accordion>
+
+  <Accordion title="What does the default name 'PressureLight 用户' mean?">
+    **PressureLight 用户** means *PressureLight User* in Chinese — it is the default placeholder for the wearer's name in the SOS message. Replace it with your real name in the **姓名** field so your emergency contact immediately knows who sent the alert. A clear name also helps emergency services if your contact shares the message with them.
+  </Accordion>
+
+  <Accordion title="How accurate is the GPS location?">
+    Accuracy depends on your environment:
+
+    | Environment | Typical accuracy |
+    |---|---|
+    | Open sky, outdoors | 5 – 30 meters |
+    | Near a window indoors | 30 – 100 meters |
+    | Deep indoors / basement | 100+ meters (or unavailable) |
+
+    The SOS message includes the accuracy figure so your emergency contact knows how precise the location is. If accuracy exceeds 100 meters, step outside and tap **Get Location** again to improve the reading.
+  </Accordion>
+
+  <Accordion title="What if the garment's LED or vibration doesn't activate?">
+    First, check that:
+
+    - The garment battery is charged.
+    - The garment is powered on (hold the power button until the LED flashes).
+    - You are applying sufficient, sustained pressure to the sensing zones.
+
+    If the LED or vibration still does not respond, see the **LED Alerts** troubleshooting guide for a full diagnostic checklist.
+  </Accordion>
+
+  <Accordion title="Can my emergency contact track me in real time?">
+    No. The SOS message provides a **snapshot** of your GPS location at the exact moment you tapped **Get Location**. Your contact receives that single coordinate — the page does not stream live location updates.
+
+    If you move significantly after sending the first message, tap **Get Location** again and send a new SOS message with your updated position.
+  </Accordion>
+
+  <Accordion title="Is the SOS page available in English?">
+    The current interface is in **Chinese (Simplified)**. However, the core actions use standard interactive elements — buttons, map links, and copy controls — that are straightforward to use regardless of your language.
+
+    Key buttons at a glance:
+
+    | Button label | Action |
+    |---|---|
+    | 获取位置 / Get Location | Capture your GPS coordinates |
+    | 打开短信发送 | Open Messages with the pre-filled SOS text |
+    | 复制求助信息 | Copy the SOS message to clipboard |
+  </Accordion>
+
+  <Accordion title="What should my emergency contact do when they receive the message?">
+    When your contact receives the SOS message, they should:
+
+    1. **Tap the map link** in the message — it opens directly in Apple Maps or Google Maps and shows your location.
+    2. **Note the accuracy figure** — if accuracy is high (large number of meters), search the wider area around the pin.
+    3. **Contact emergency services** (police, ambulance, mountain rescue, etc.) if the situation warrants it, and share the map link with them.
+    4. **Reply or call you** to confirm they received the alert and are on their way.
+
+    Remind your emergency contact to save the SOS page URL so they recognise the message format and respond quickly.
+  </Accordion>
+</AccordionGroup>
