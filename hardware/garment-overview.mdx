@@ -1,24 +1,24 @@
 ---
-title: "PressureLight Garment Overview and Components"
+title: "PressureLight 压感光护 Garment: Components Overview"
 sidebarTitle: "Garment Overview"
 description: "Explore the physical components inside the PressureLight 压感光护 garment and understand exactly what each one does to keep you safe."
 ---
 
-The PressureLight 压感光护 is a smart safety garment engineered to detect when you're in distress and respond instantly — flashing high-visibility alerts, triggering tactile alarms, and enabling an SOS call from your iPhone, all without requiring a single app install. Understanding the hardware inside the garment helps you wear it correctly, maintain it, and trust it when it matters most.
+The PressureLight 压感光护 is a smart safety garment engineered to detect when you're in distress and respond instantly — flashing high-visibility alerts and triggering a tactile alarm, all without requiring any manual action from you. Understanding the hardware inside the garment helps you wear it correctly, maintain it, and trust it when it matters most.
 
 ## Components Overview
 
 <CardGroup cols={2}>
-  <Card title="Pressure Sensor Matrix" icon="grid-2">
+  <Card title="Pressure Sensor Matrix" icon="grid-2" href="/hardware/pressure-sensors">
     A grid of pressure-sensitive sensors woven directly into the garment fabric. The matrix continuously monitors pressure patterns across the sensor zones and feeds that data to the ESP32. When it detects sustained distress-level pressure — distinct from normal movement — it signals the ESP32 to activate the SOS sequence.
   </Card>
-  <Card title="ESP32 Controller" icon="microchip">
-    The brain of the PressureLight system. The ESP32 microcontroller reads input from the pressure matrix, applies threshold logic to distinguish distress from everyday activity, and takes action — controlling the LED light strip, firing the vibration motor, and managing overall SOS state. Everything runs on-device with no cloud dependency.
+  <Card title="ESP32 Controller" icon="microchip" href="/hardware/pressure-sensors">
+    The brain of the PressureLight system. The ESP32 microcontroller reads input from the pressure matrix, applies threshold logic to distinguish distress from everyday activity, and takes action — controlling the LED light strip, firing the vibration motor, and managing overall SOS state. Everything runs on-device.
   </Card>
-  <Card title="LED Light Strip" icon="lightbulb">
+  <Card title="LED Light Strip" icon="lightbulb" href="/hardware/led-alerts">
     High-visibility LED strips run along the exterior of the garment. On SOS activation, the ESP32 drives the strips into a rapid alternating red-and-white flash pattern (红白闪烁) that is designed to be seen by bystanders and emergency services from a distance, day or night.
   </Card>
-  <Card title="Vibration Motor" icon="wave-pulse">
+  <Card title="Vibration Motor" icon="wave-pulse" href="/hardware/led-alerts">
     An embedded vibration motor activates simultaneously with the LED strip during SOS. It delivers a strong tactile alert directly to you — the wearer — while also producing enough physical sensation and sound to attract the attention of anyone nearby.
   </Card>
 </CardGroup>
@@ -30,8 +30,7 @@ Run through this checklist every time before you head out wearing your PressureL
 - Garment is fully charged
 - LED strips are unobstructed by outerwear or accessories
 - Pressure sensors are in contact with your body — the garment fits correctly and snugly
-- The SOS helper page is bookmarked in Safari on your iPhone
-- Your emergency contact number is known and accessible
+- Your emergency contact details are known and accessible
 
 ## Charging the Garment
 

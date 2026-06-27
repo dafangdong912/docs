@@ -1,5 +1,5 @@
 ---
-title: "Send Your GPS Location to Emergency Contacts"
+title: "How to Send Your GPS Location to an Emergency Contact"
 sidebarTitle: "Sending Location"
 description: "Capture your precise GPS coordinates on iPhone Safari and send a fully formatted SOS message with map links to your emergency contact instantly."
 ---
@@ -26,7 +26,7 @@ The moment PressureLight's SOS alarm activates, your next priority is getting yo
     - **Latitude** — 6 decimal places
     - **Longitude** — 6 decimal places
     - **Accuracy** — in metres (lower is better)
-    - **Timestamp** — date and time of the reading
+    - **Timestamp** — date and time of the reading in YYYY/MM/DD HH:MM:SS format
   </Step>
   <Step title="Review the generated SOS message">
     The page automatically populates the message text area with a fully formatted SOS message using your coordinates and the name you entered. Read it over to confirm the details look correct.
@@ -39,6 +39,9 @@ The moment PressureLight's SOS alarm activates, your next priority is getting yo
 
     **Option B — Open iPhone Messages directly:**
     Tap **打开短信发送**. iPhone Messages opens with the recipient pre-filled and the SOS message already in the body. Tap **Send** to dispatch it.
+  </Step>
+  <Step title="Verify your location on the map (optional)">
+    Tap **打开地图定位** to open Apple Maps in a new tab showing the exact pin captured during your GPS reading. Use this to confirm the coordinates are accurate before — or after — sending your message.
   </Step>
 </Steps>
 
@@ -66,6 +69,20 @@ The two map links at the bottom let your contact open turn-by-turn navigation im
 <Tip>
   If the **紧急联系人手机号** field is empty when you tap **打开短信发送**, iPhone Messages will open a new SMS with no recipient pre-filled. Always enter the phone number first so your message reaches the right person without delay.
 </Tip>
+
+## GPS Location Errors
+
+If the **获取我的当前位置** button fails to return coordinates, the page displays one of the following errors:
+
+| Error | Cause | What to Do |
+|-------|-------|------------|
+| Permission denied (error 1) | You declined the location access prompt in Safari | Open **Settings → Safari → Location** on your iPhone and set it to **Allow** |
+| Position unavailable (error 2) | The device cannot determine your location | Move to a more open area with a clear view of the sky and try again |
+| Timeout (error 3) | GPS did not return a fix within 15 seconds | Stay still, ensure you are not indoors or underground, and tap the button again |
+
+<Warning>
+  If GPS repeatedly fails and you need to send your location urgently, describe your surroundings in a manual SMS or voice call to your emergency contact. Do not wait for a GPS fix if your situation is dangerous.
+</Warning>
 
 ## Sharing via Other Apps
 

@@ -14,32 +14,47 @@ The PressureLight SOS page uses the iOS `sms:` URL scheme to open Apple Messages
 
 <AccordionGroup>
   <Accordion title="打开短信发送 does nothing">
-    **Causes:**
-    - You are not using iPhone Safari (Chrome, Firefox, and other browsers do not support the `sms:` URL scheme reliably).
-    - The Messages app is not set up or is disabled on your device.
-    - A browser security policy is blocking the URL.
+    **Cause:** The `sms:` URL scheme is only supported in iPhone Safari. Chrome, Firefox, and other browsers — including in-app browsers inside WeChat, Instagram, or LINE — do not reliably handle this deep-link.
 
     **How to fix:**
 
-    1. Make sure you are opening the SOS page in **iPhone Safari** — not Chrome, Firefox, or any in-app browser.
-    2. Copy the URL from your current browser and paste it into Safari's address bar.
-    3. Tap **打开短信发送** again. Safari will hand off to the Messages app automatically.
+    <Steps>
+      <Step title="Confirm you are using iPhone Safari">
+        Check the browser icon at the bottom of your screen. If it is not Safari, copy the SOS page URL and paste it into Safari's address bar.
+      </Step>
+      <Step title="Tap the button again">
+        Tap **打开短信发送** in Safari. Safari hands the `sms:` link off to the Messages app automatically.
+      </Step>
+      <Step title="Confirm Messages is set up">
+        If Safari still does nothing, verify that the Messages app is installed and configured on your device. Open **Messages** directly to confirm it works.
+      </Step>
+    </Steps>
 
     <Note>
-      The `sms:` deep-link is only reliably supported in iPhone Safari. Always use Safari for the PressureLight SOS page.
+      The `sms:` deep-link is only reliably supported in **iPhone Safari**. Always open the PressureLight SOS page in Safari for reliable operation.
     </Note>
   </Accordion>
 
   <Accordion title="SMS opens but has no phone number">
-    **Cause:** The **紧急联系人手机号** (emergency contact phone number) field was empty when you tapped the button. The `sms:` URL requires a destination number to pre-fill the **To:** field.
+    **Cause:** The **紧急联系人手机号** (emergency contact phone number) field was empty when you tapped the button. The `sms:` URL requires a destination number to pre-fill the **To:** field in Messages. If no number is provided, Messages opens a blank compose screen with no recipient.
 
     **How to fix:**
 
-    1. Return to the SOS page.
-    2. Enter your emergency contact's phone number in the **紧急联系人手机号** field.
-    3. Tap **打开短信发送** again.
+    <Steps>
+      <Step title="Return to the SOS page">
+        Go back to the SOS page in Safari.
+      </Step>
+      <Step title="Enter the phone number">
+        Type your emergency contact's phone number into the **紧急联系人手机号** field. For international contacts, include the country code (for example, `+1` for the United States or `+44` for the United Kingdom).
+      </Step>
+      <Step title="Tap the button again">
+        Tap **打开短信发送** again. Messages will now open with the number pre-filled in the **To:** field.
+      </Step>
+    </Steps>
 
-    If you are already in the Messages compose screen, you can still type or paste the number directly into the **To:** field and send manually.
+    <Tip>
+      If you are already in the Messages compose screen, you can still type or paste the number directly into the **To:** field and send manually.
+    </Tip>
   </Accordion>
 
   <Accordion title="SMS opens but the body is empty or garbled">
@@ -47,22 +62,42 @@ The PressureLight SOS page uses the iOS `sms:` URL scheme to open Apple Messages
 
     **How to fix:**
 
-    1. Return to the SOS page and tap **复制求助信息** to copy the full SOS message to your clipboard.
-    2. Open the Messages app manually and start a new message to your emergency contact.
-    3. Long-press the message body field and tap **Paste**.
-    4. Tap **Send**.
+    <Steps>
+      <Step title="Copy the SOS message">
+        Return to the SOS page and tap **复制求助信息** to copy the full SOS message to your clipboard.
+      </Step>
+      <Step title="Open Messages manually">
+        Open the Messages app and start a new message to your emergency contact.
+      </Step>
+      <Step title="Paste and send">
+        Long-press the message body field, tap **Paste**, then tap **Send**.
+      </Step>
+    </Steps>
   </Accordion>
 
-  <Accordion title="Copy button (复制求助信息) doesn't work">
-    **Cause:** Clipboard write permission was not granted, or you are using an older browser that doesn't support the modern Clipboard API.
+  <Accordion title="Copy button (复制求助信息) does nothing or shows an error">
+    **Important:** If you tap **复制求助信息** before capturing your GPS location, the page will show the alert **「请先获取当前位置。」** (Please get your current location first). You must tap **Get Location** and wait for coordinates to appear before the copy button will work.
 
-    **How it works:** The page first tries `navigator.clipboard.writeText()`. If that fails, it automatically falls back to `document.execCommand('copy')`. If both methods fail, you will need to copy the text manually.
+    If you have already captured your location and the button still fails, the cause is likely a clipboard permission issue or an unsupported browser.
+
+    **How the copy mechanism works:** The page first tries `navigator.clipboard.writeText()`. If that call fails, it automatically falls back to `document.execCommand('copy')`. If both methods fail, you need to copy the text manually.
 
     **How to fix:**
 
-    1. When Safari asks for clipboard permission, tap **Allow**.
-    2. If the button still doesn't work, long-press the message text displayed on the page, tap **Select All**, then tap **Copy**.
-    3. Paste into Messages, WhatsApp, WeChat, or any other app.
+    <Steps>
+      <Step title="Capture location first">
+        Tap **Get Location** and confirm that your coordinates appear on the page before tapping the copy button.
+      </Step>
+      <Step title="Grant clipboard permission">
+        When Safari asks for clipboard permission, tap **Allow**.
+      </Step>
+      <Step title="Retry in Safari">
+        If the button still fails, make sure you are in **iPhone Safari** — the Clipboard API is most reliable there.
+      </Step>
+      <Step title="Copy manually as a last resort">
+        Long-press the message text displayed on the page, tap **Select All**, then tap **Copy**. Paste into Messages, WeChat, WhatsApp, or any other app.
+      </Step>
+    </Steps>
   </Accordion>
 
   <Accordion title="I sent the SMS but my contact didn't receive it">
@@ -73,9 +108,17 @@ The PressureLight SOS page uses the iOS `sms:` URL scheme to open Apple Messages
 
     **How to fix:**
 
-    1. Verify the number format. For international contacts, include the country code (e.g., `+1` for the US, `+44` for the UK).
-    2. Check your signal bars. If you have no signal, copy the SOS message now and send it as soon as you regain connectivity.
-    3. Use an alternative channel (see below) — your copied message works in any app.
+    <Steps>
+      <Step title="Check the phone number">
+        Verify the number format. For international contacts, include the country code — for example, `+86` for China, `+1` for the United States, `+44` for the United Kingdom.
+      </Step>
+      <Step title="Check your signal">
+        Look at your signal bars. If you have no cellular signal, copy the SOS message now and send it as soon as you regain connectivity.
+      </Step>
+      <Step title="Use an alternative channel">
+        Your copied message works in any app — see the section below for alternatives.
+      </Step>
+    </Steps>
   </Accordion>
 </AccordionGroup>
 
@@ -88,4 +131,4 @@ If SMS does not work, tap **复制求助信息** to copy the message, then paste
 - **Email** — compose a new email and paste into the body
 - **AirDrop** — paste into Notes and AirDrop the note to a nearby device
 
-The copied message contains your GPS coordinates and map links, so it is fully useful in any medium.
+The copied message contains your GPS coordinates and map links, so it carries full location information regardless of how it is delivered.

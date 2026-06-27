@@ -1,5 +1,5 @@
 ---
-title: "Get Started with PressureLight in 5 Minutes"
+title: "Quick Start: Set Up PressureLight in 5 Minutes"
 sidebarTitle: "Quick Start"
 description: "Set up your PressureLight garment, configure your emergency contact and wearer name, and complete a full test drill — all in under five minutes."
 ---
@@ -37,22 +37,34 @@ You can have PressureLight fully configured and ready to send a real SOS alert i
   </Step>
   <Step title="Allow Location Access">
     If Safari has not yet prompted you for location permission, tap **获取我的当前位置 (Get Location)** once. Safari displays a permission dialog asking whether to share your location with the page. Tap **Allow** to grant access. You only need to do this once per browser session — Safari remembers your choice while the page remains open.
-  </Step>
-  <Step title="Tap 'Get Location' (获取我的当前位置)">
-    Tap the **获取我的当前位置** button. The page contacts the iPhone's GPS hardware and, within a few seconds, displays:
 
-    - Your **latitude** and **longitude** coordinates
+    <Warning>
+      If you tap **Don't Allow**, location access is blocked and you will see **Error 1 (Permission Denied)** when you try to capture your position. To re-enable it, go to **Settings → Privacy & Security → Location Services → Safari**, set it to **While Using the App**, and reload the page.
+    </Warning>
+  </Step>
+  <Step title="Capture Your GPS Location">
+    Tap the **获取我的当前位置** button. The page calls the iPhone's GPS hardware using `navigator.geolocation.getCurrentPosition` with `enableHighAccuracy: true` and a 15-second timeout, always requesting a fresh position (`maximumAge: 0`). Within a few seconds the page displays:
+
+    - Your **latitude** and **longitude** to six decimal places
     - The **accuracy** of the reading in meters (lower is better — move to an open area outdoors for best results)
 
     Wait until the accuracy reading is below **20 meters** before proceeding for a production SOS. During a test drill, any reading is fine.
+
+    If location capture fails, you will see one of these errors:
+
+    | Error | Cause | What to do |
+    |---|---|---|
+    | Error 1 — Permission Denied | Location access was blocked | Re-enable in **Settings → Location Services → Safari** |
+    | Error 2 — Position Unavailable | No GPS signal available | Move outdoors or to a window and try again |
+    | Error 3 — Timeout | GPS did not respond within 15 seconds | Move to open sky and tap 'Get Location' again |
   </Step>
   <Step title="Copy or Send the SOS Message">
     With GPS coordinates displayed, you have two options:
 
-    - **Tap 复制求助信息** — copies the full formatted SOS message (including both map links) to your iPhone clipboard. You can then paste it into any messaging app manually.
-    - **Tap 打开短信发送** — opens the iPhone Messages app with the SOS message pre-filled and your emergency contact's number already in the 'To' field. Review the message and tap **Send**.
+    - **Tap 复制求助信息** — copies the full formatted SOS message (including your name, coordinates to six decimal places, accuracy, timestamp, and both map links) to your iPhone clipboard using `navigator.clipboard.writeText`. On older iOS versions the page falls back to `document.execCommand('copy')` automatically so the copy always succeeds.
+    - **Tap 打开短信发送** — opens the iPhone Messages app using the `sms:` deep-link scheme, with the SOS message pre-filled and your emergency contact's number already in the **To** field. Review the message and tap **Send**.
 
-    Your emergency contact receives the complete alert with your name, coordinates, accuracy, timestamp, and both Apple Maps and Google Maps links.
+    Your emergency contact receives the complete alert with your name, coordinates, accuracy, timestamp, an Apple Maps link, and a Google Maps link.
   </Step>
 </Steps>
 
@@ -71,6 +83,6 @@ You can have PressureLight fully configured and ready to send a real SOS alert i
     Learn how to save, update, and switch between multiple emergency contacts on the SOS helper page.
   </Card>
   <Card title="Triggering an SOS Alert" icon="triangle-exclamation" href="/sos/triggering-sos">
-    Understand exactly how to activate the pressure trigger deliberately, what the garment feedback looks, and how to cancel a false alarm.
+    Understand exactly how to activate the pressure trigger deliberately, what the garment feedback looks like, and how to cancel a false alarm.
   </Card>
 </CardGroup>

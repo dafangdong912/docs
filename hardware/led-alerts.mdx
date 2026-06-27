@@ -11,7 +11,7 @@ When the ESP32 determines that a distress event is underway, it doesn't wait —
 The LED strips run along the exterior of the garment and are driven entirely by the ESP32. There is no manual switch — activation is automatic the moment the ESP32 confirms an SOS-level pressure event.
 
 - **Controlled by the ESP32** — the microcontroller drives the flash pattern directly, with no user action required.
-- **Flash pattern** — the strips alternate between red and white at high frequency (红白闪烁), producing a striking, unmistakable visual signal.
+- **Flash pattern** — the strips alternate between red and white (红白闪烁), producing a striking, unmistakable visual signal.
 - **Purpose** — the pattern is deliberately chosen to maximise visibility to bystanders and emergency services at a distance, in low light, and in high-movement environments.
 - **Keep the strip unobstructed** — do not wear heavy outerwear or carry equipment that covers the LED strip zones during use. An obstructed strip cannot be seen by people who could help you.
 
@@ -29,10 +29,9 @@ The vibration motor activates at the same moment as the LED strip, giving SOS al
   <Tab title="SOS Active">
     When an SOS event is detected by the pressure matrix and confirmed by the ESP32:
 
-    - The **LED strips flash rapidly**, alternating red and white (红白闪烁) in a continuous high-frequency cycle.
+    - The **LED strips flash**, alternating red and white (红白闪烁) in a continuous repeating cycle.
     - The **vibration motor runs continuously**, producing strong tactile pulses and audible buzzing.
     - Both outputs remain active until the SOS is cancelled or the battery is depleted.
-    - The iPhone SOS helper page (opened in Safari) simultaneously displays an alert, requiring no app install.
 
     This combined state is designed to be unmissable — visually, physically, and audibly.
   </Tab>

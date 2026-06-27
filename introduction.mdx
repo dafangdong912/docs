@@ -1,10 +1,10 @@
 ---
-title: "PressureLight: Intelligent Safety Wearable with SOS"
+title: "PressureLight: Smart Pressure-Sensing Safety Wearable"
 sidebarTitle: "Introduction"
 description: "PressureLight is a pressure-sensing smart garment that activates LED alarms, a vibration motor, and an iPhone-based GPS SOS system — no app required."
 ---
 
-PressureLight (压感光护) is your intelligent safety wearable built for real-world emergencies. This page introduces what PressureLight is, who it's designed for, and how its core features work together to keep you safer.
+PressureLight (压感光护) is your intelligent safety wearable built for real-world emergencies. This page introduces what PressureLight is, who it is designed for, and how its core features work together to keep you safer.
 
 ## What Is PressureLight?
 
@@ -20,28 +20,28 @@ PressureLight is designed for:
 ## Key Features
 
 <CardGroup cols={2}>
-  <Card title="Pressure-Sensing Fabric Matrix" icon="hand-pointer">
+  <Card title="Pressure-Sensing Fabric Matrix" icon="hand-pointer" href="/how-it-works#pressure-matrix">
     Sensors woven directly into the garment fabric detect sustained pressure and instantly signal the ESP32 to trigger the SOS sequence.
   </Card>
-  <Card title="ESP32-Powered LED Alarm" icon="bolt">
+  <Card title="ESP32-Powered LED Alarm" icon="bolt" href="/how-it-works#led-alarm">
     Onboard LED strips flash alternating red and white light, creating a high-visibility alarm that alerts bystanders even in low-light conditions.
   </Card>
-  <Card title="Vibration Motor Alert" icon="bell">
+  <Card title="Vibration Motor Alert" icon="bell" href="/how-it-works#vibration-motor">
     A built-in vibration motor delivers a strong tactile alert so you know the SOS sequence has activated, even when you cannot see the lights.
   </Card>
-  <Card title="High-Accuracy iPhone GPS" icon="location-dot">
+  <Card title="High-Accuracy iPhone GPS" icon="location-dot" href="/how-it-works#gps-capture">
     The mobile SOS helper page uses the iPhone's native GPS API in Safari to capture your latitude, longitude, and accuracy in meters with a single tap.
   </Card>
-  <Card title="One-Tap Copy or SMS Deep-Link" icon="comment-sms">
+  <Card title="One-Tap Copy or SMS Deep-Link" icon="comment-sms" href="/how-it-works#sms-delivery">
     Copy the formatted SOS message to your clipboard or open a pre-filled SMS deep-link that routes directly to your emergency contact — no manual typing required.
   </Card>
-  <Card title="Dual Map Links in Every Message" icon="map">
+  <Card title="Dual Map Links in Every Message" icon="map" href="/how-it-works#sos-message-format">
     Every SOS message includes both an Apple Maps link and a Google Maps link, so your emergency contact can navigate to your location regardless of their device.
   </Card>
-  <Card title="No App Install Required" icon="mobile-screen">
+  <Card title="No App Install Required" icon="mobile-screen" href="/quickstart">
     The entire SOS workflow runs inside iPhone Safari as a mobile web page. Your emergency contact needs nothing extra to receive and act on your alert.
   </Card>
-  <Card title="Privacy-Safe by Design" icon="shield-halved">
+  <Card title="Privacy-Safe by Design" icon="shield-halved" href="/how-it-works#privacy">
     Your location is never captured silently. GPS coordinates are only read when you explicitly tap 'Get Location', and the SMS is always sent with your manual confirmation.
   </Card>
 </CardGroup>

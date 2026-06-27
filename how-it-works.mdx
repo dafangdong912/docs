@@ -18,35 +18,57 @@ PressureLight turns a single physical trigger into a coordinated chain of visual
   <Step title="Open the SOS Helper Page">
     You or a nearby bystander opens the PressureLight mobile SOS helper page in **iPhone Safari**. The URL is printed on the garment's care label and encoded in a QR code on the garment tag. The page loads instantly — no app download, no account login. Once the page is open, enter the wearer's name and the emergency contact's phone number if they are not already pre-filled.
   </Step>
-  <Step title="Capture GPS and Notify">
-    Tap **获取我的当前位置 (Get Location)**. Safari prompts for location permission; grant it to allow the page to read the iPhone's GPS. The page displays the captured latitude, longitude, and accuracy in meters. Then tap either **复制求助信息** to copy the full SOS message to the clipboard, or **打开短信发送** to open a pre-filled SMS deep-link addressed to your emergency contact. Confirm and send the message — your contact receives the full alert with dual map links immediately.
+  <Step title="Capture GPS Location">
+    Tap **获取我的当前位置 (Get Location)**. Safari prompts for location permission; grant it to allow the page to read the iPhone's GPS. The page uses the browser's `navigator.geolocation.getCurrentPosition` API with `enableHighAccuracy: true`, a 15-second timeout, and `maximumAge: 0` to always return a fresh, high-accuracy reading. Once the position is acquired, the page displays your latitude and longitude (to six decimal places) and the accuracy of the reading in meters.
+  </Step>
+  <Step title="Send the SOS Message">
+    With coordinates displayed, tap either **复制求助信息** to copy the full SOS message to your clipboard, or **打开短信发送** to open a pre-filled SMS deep-link addressed to your emergency contact. Confirm and send the message in the Messages app — your contact receives the full alert with dual map links immediately.
   </Step>
 </Steps>
 
-## Components at a Glance
+## GPS Capture Details
 
-<CardGroup cols={2}>
-  <Card title="Pressure Sensor Matrix" icon="microchip">
-    Conductive fabric sensors woven into the garment detect sustained pressure at trigger zones and relay the signal to the ESP32.
-  </Card>
-  <Card title="ESP32 Controller" icon="server">
-    The onboard ESP32 microcontroller orchestrates the entire alert sequence — receiving sensor input and driving both the LED strips and vibration motor.
-  </Card>
-  <Card title="LED Strip" icon="lightbulb">
-    Red and white LED strips mounted on the garment flash in a high-visibility alternating pattern to attract bystander attention in any lighting condition.
-  </Card>
-  <Card title="Vibration Motor" icon="circle-dot">
-    A compact vibration motor embedded in the garment provides tactile confirmation of SOS activation directly to the wearer's body.
-  </Card>
-  <Card title="Mobile SOS Page" icon="mobile-screen-button">
-    A lightweight mobile web page, optimized for iPhone Safari, handles GPS capture, message formatting, and SMS delivery — with zero app installation.
-  </Card>
-  <Card title="Emergency SMS" icon="comment-sms">
-    A fully formatted SOS message — including name, coordinates, accuracy, timestamp, and dual map links — is sent to the pre-configured emergency contact via native iPhone SMS.
-  </Card>
-</CardGroup>
+The SOS helper page requests your location using the following parameters, giving you the most accurate position the iPhone hardware can provide:
 
-## Example SOS Message
+| Parameter | Value | Effect |
+|---|---|---|
+| `enableHighAccuracy` | `true` | Forces the iPhone to use GPS hardware rather than Wi-Fi or cell triangulation |
+| `timeout` | `15000 ms` | Waits up to 15 seconds before reporting a timeout error |
+| `maximumAge` | `0` | Always requests a fresh position — never uses a cached location |
+
+### GPS Error Codes
+
+If the location request fails, the helper page displays one of the following errors:
+
+<AccordionGroup>
+  <Accordion title="Error 1 — Permission Denied">
+    You denied location access when Safari prompted, or location services are disabled for Safari in iPhone Settings. To fix this, go to **Settings → Privacy & Security → Location Services → Safari** and set it to **While Using the App**, then reload the helper page and tap 'Get Location' again.
+  </Accordion>
+  <Accordion title="Error 2 — Position Unavailable">
+    The iPhone cannot determine your location — this typically happens indoors with no GPS signal and weak Wi-Fi. Move to a window or step outside and try again.
+  </Accordion>
+  <Accordion title="Error 3 — Timeout">
+    The GPS hardware did not return a position within 15 seconds. This usually means you are in a location with poor satellite visibility. Move to an open outdoor area and tap 'Get Location' again.
+  </Accordion>
+</AccordionGroup>
+
+## SOS Message Delivery
+
+### Copying the Message
+
+Tapping **复制求助信息** writes the formatted SOS message to your clipboard using `navigator.clipboard.writeText`. On older browsers or iOS versions where the Clipboard API is unavailable, the page falls back to `document.execCommand('copy')` automatically. Either way, the full message is ready to paste into any app.
+
+### Sending via SMS Deep-Link
+
+Tapping **打开短信发送** opens the iPhone Messages app using the SMS URL scheme:
+
+```
+sms:<phone>&body=<encoded-message>
+```
+
+The `<phone>` field is pre-filled with your emergency contact's number, and `<encoded-message>` contains the fully URL-encoded SOS message. iOS requires you to tap **Send** yourself inside the Messages app — this is an iOS privacy requirement that cannot be bypassed.
+
+## SOS Message Format {#sos-message-format}
 
 Every message sent through PressureLight follows this exact format, giving your emergency contact everything they need to locate and assist you:
 
@@ -61,7 +83,35 @@ Google 地图：https://maps.google.com/?q=<lat>,<lng>
 请尽快联系或前往协助。
 ```
 
-The `<Name>` field is populated from the wearer name you enter on the helper page. The `<lat>`, `<lng>`, `<X>`, and `<timestamp>` values are filled in automatically from the iPhone's GPS reading at the moment you tap 'Get Location'.
+- `<Name>` — the wearer name entered on the helper page
+- `<lat>` and `<lng>` — latitude and longitude to **six decimal places** (approximately 0.1 m precision)
+- `<X>` — GPS accuracy in meters reported by the device
+- `<timestamp>` — the local date and time at the moment 'Get Location' was tapped
+- The Apple Maps URL uses the format `https://maps.apple.com/?ll=<lat>,<lng>&q=PressureLight%20SOS`
+- The Google Maps URL uses the format `https://maps.google.com/?q=<lat>,<lng>`
+
+## Components at a Glance
+
+<CardGroup cols={2}>
+  <Card title="Pressure Sensor Matrix" icon="microchip" href="/introduction#pressure-sensing-fabric-matrix">
+    Conductive fabric sensors woven into the garment detect sustained pressure at trigger zones and relay the signal to the ESP32.
+  </Card>
+  <Card title="ESP32 Controller" icon="server" href="/introduction#esp32-powered-led-alarm">
+    The onboard ESP32 microcontroller orchestrates the entire alert sequence — receiving sensor input and driving both the LED strips and vibration motor.
+  </Card>
+  <Card title="LED Strips" icon="lightbulb" href="/introduction#esp32-powered-led-alarm">
+    Red and white LED strips mounted on the garment flash in a high-visibility alternating pattern to attract bystander attention in any lighting condition.
+  </Card>
+  <Card title="Vibration Motor" icon="circle-dot" href="/introduction#vibration-motor-alert">
+    A compact vibration motor embedded in the garment provides tactile confirmation of SOS activation directly to the wearer's body.
+  </Card>
+  <Card title="Mobile SOS Page" icon="mobile-screen-button" href="/quickstart">
+    A lightweight mobile web page, optimized for iPhone Safari, handles GPS capture, message formatting, and SMS delivery — with zero app installation.
+  </Card>
+  <Card title="Emergency SMS" icon="comment-sms" href="#sos-message-format">
+    A fully formatted SOS message — including name, coordinates, accuracy, timestamp, and dual map links — is sent to the pre-configured emergency contact via native iPhone SMS.
+  </Card>
+</CardGroup>
 
 <Info>
   The SOS helper page **cannot silently access your location**. iPhone Safari enforces a mandatory user-permission prompt before any GPS data is read. You must tap 'Get Location' and grant location access for coordinates to appear. This is a deliberate privacy protection — your location is never captured in the background or without your action.

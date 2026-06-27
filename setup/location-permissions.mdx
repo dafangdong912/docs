@@ -1,5 +1,5 @@
 ---
-title: "Allow Location Access for PressureLight SOS"
+title: "Allow Location Access for the PressureLight SOS Page"
 sidebarTitle: "Location Permissions"
 description: "Grant iPhone Safari permission to share your GPS coordinates with the PressureLight SOS page so your exact location reaches help fast."
 ---
@@ -13,18 +13,18 @@ The SOS helper page needs your GPS position to generate a useful distress messag
     Navigate to the helper page URL using the QR code or by typing the address. Confirm the blinking red status indicator is visible.
   </Step>
   <Step title="Tap '获取我的当前位置'">
-    Tap the **Get Location** button. This is the only action that triggers a location request — the page never requests your position automatically.
+    Tap the **Get Location** button. This is the only action that triggers a location request — the page calls `navigator.geolocation.getCurrentPosition` at that moment and never requests your position automatically.
   </Step>
   <Step title="Respond to the permission dialog">
     Safari displays a prompt asking whether to share your location. Tap **Allow Once** to grant access for this session, or **Allow While Using** to grant access whenever the page is open.
   </Step>
   <Step title="Wait for the coordinates to appear">
-    Within a few seconds, the coordinates display fills with your latitude, longitude, accuracy in meters, and a timestamp. Your SOS message is now ready to send.
+    Within a few seconds the coordinates display fills with your latitude and longitude (each to six decimal places), accuracy in metres, and a timestamp. Your SOS message is now ready to send.
   </Step>
 </Steps>
 
 <Tip>
-  Choose **Allow While Using** rather than **Allow Once**. With this setting Safari does not prompt you again each time you tap the Get Location button, which matters when you need to act quickly under stress.
+  Choose **Allow While Using** rather than **Allow Once**. With this setting Safari does not prompt you again each time you tap **获取我的当前位置**, which matters when you need to act quickly under stress.
 </Tip>
 
 ## Re-Enable Location If Previously Denied
@@ -49,21 +49,50 @@ After changing either setting, return to the SOS page and tap **获取我的当�
   If location access is denied, the SOS helper page displays an error and cannot generate an SOS message. The coordinates, Apple Maps link, and Google Maps link are all derived from your GPS position — none of them appear without it. Resolve the permission issue before an emergency arises.
 </Warning>
 
+## GPS Parameters the Page Uses
+
+When you tap **获取我的当前位置**, the page calls `navigator.geolocation.getCurrentPosition` with the following options:
+
+| Parameter | Value | Effect |
+|---|---|---|
+| `enableHighAccuracy` | `true` | Instructs iOS to use GPS hardware rather than Wi-Fi or cell-tower triangulation alone, producing the most precise fix available. |
+| `timeout` | `15000` ms | If iOS cannot return a position within 15 seconds, the page reports a **timeout error** (error code `3`) and invites you to try again. |
+| `maximumAge` | `0` | Forces a fresh position fix every time you tap the button. Cached positions are never used. |
+
+## Location Error Codes
+
+If something goes wrong the page displays one of three error messages:
+
+<Accordion title="Error 1 — Permission denied">
+  iOS returned `PERMISSION_DENIED` (code `1`). Location Services is blocked for Safari or for this page. Follow the steps in **Re-Enable Location If Previously Denied** above to restore access.
+</Accordion>
+
+<Accordion title="Error 2 — Position unavailable">
+  iOS returned `POSITION_UNAVAILABLE` (code `2`). The device could not determine your position — this usually happens deep indoors or in a basement with no GPS signal. Move to a window or step outdoors, then tap **获取我的当前位置** again.
+</Accordion>
+
+<Accordion title="Error 3 — Timeout">
+  iOS returned `TIMEOUT` (code `3`). A position fix was not obtained within the 15-second window. This can happen in areas with a weak satellite signal. Wait a few seconds, then tap **获取我的当前位置** again. Moving closer to a window improves acquisition speed.
+</Accordion>
+
 ## Understanding Accuracy
 
 <Info>
-  The SOS page requests your position with `enableHighAccuracy: true`. On a clear outdoor signal, iOS GPS typically achieves an accuracy of **10–30 meters**. The accuracy value is included in your SOS message so your contact knows how precise the fix is.
+  With `enableHighAccuracy: true`, iOS GPS typically achieves an accuracy of **10–30 metres** outdoors under a clear sky. The accuracy value is included in your SOS message so your contact knows how precise the fix is.
 </Info>
 
 Use these tips to get the best possible reading:
 
 - **Go outdoors or stand near a window.** GPS signals are blocked by thick walls, basements, and dense building materials. Open sky gives the fastest and most accurate fix.
-- **Wait and retry if accuracy is high.** If the coordinates display shows an accuracy greater than 100 meters, wait 5–10 seconds for the GPS receiver to refine its estimate, then tap **获取我的当前位置** again. The page always uses the most recently captured position.
+- **Wait and retry if accuracy is high.** If the coordinates display shows an accuracy greater than 100 metres, wait 5–10 seconds for the GPS receiver to refine its estimate, then tap **获取我的当前位置** again. The page always uses the most recently captured position.
 - **Keep the screen on.** iOS may throttle location hardware when the display sleeps. Tap the screen to keep it active while the fix is refining.
 
 ## Next Steps
 
-<CardGroup cols={1}>
+<CardGroup cols={2}>
+  <Card title="Add Emergency Contacts" icon="address-book" href="/setup/emergency-contacts">
+    Configure who receives your SOS message and understand what it contains.
+  </Card>
   <Card title="Send Your Location" icon="location-arrow" href="/sos/sending-location">
     Generate your SOS message and dispatch it to your emergency contact.
   </Card>
